@@ -1,0 +1,69 @@
+*{
+    box-sizing: border-box;
+    /* color: rgb(39, 39, 39); */
+    color: rgb(209, 209, 209);
+}
+
+body{
+    /* background-color: #c4a0d9; */
+    background-color: #1d1d1d;
+}
+
+p, h2, h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+li, div{
+    font-family: 'Franklin Gothic Small', 'Arial Narrow', Arial, sans-serif;
+    font-size: 14px;
+}
+
+p{
+    font-size: 16px;
+}
+
+h2{
+    margin-top: 3%;
+}
+
+input, select, button{
+    /* background-color: #e8d7f2;
+    border: 1px solid #b6a4c3; */
+    background-color: #5c5c5c;
+    border: 1px solid #1d1d1d;
+    border-radius: 5px;
+    padding: 6px;
+}
+select, button:hover{
+    /* background-color: #f5ebfa; */
+    background-color: #767676;
+}
+
+
+.main{
+    width: 85%;
+    height: 90%;
+    margin-left: 7.5%;
+    /* background-color: #dcb7f2; */
+    background-color: #292929;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.prj1{
+    display: flex;
+    gap: 20px;
+}
+
+.prj1-settings{
+    display: grid;
+    gap: 7px;
+}
+
+.prj1-context{
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #af8fc1;
+}
+
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/intro.css">
+    <title>Homework 14.03.2024</title>
+    
+    <style>
+        input{
+            width: 80%;
+            height: 30px;
+            margin-top: 20px;
+
+        }
+
+        select{
+            width: 50%;
+            margin-top: 20px;
+        }
+
+        .container{
+            display: grid;
+            justify-content: center;
+            gap: 100px;
+        }
+
+        .ticketCreature{
+            grid-column: 1;
+            height: 600px;
+            width: 400px;
+            text-align: center;
+            background-color: #292929;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .ticket{
+            grid-column: 2;
+            height: 600px;
+            width: 400px;
+            text-align: center;
+            background-color: #292929;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <button onclick="location.href='../index.html'">Back to Menu</button>
+
+    <div class="container">
+        <div class="ticketCreature">
+            <h2>Create Student Ticket</h2>
+            <input type="text" placeholder="Имя" ng-model="name">
+            <input type="text" placeholder="Фамилия" ng-model="surname">
+            <input type="text" placeholder="Отчество" ng-model="fathername">
+            <input type="text" placeholder="Год поступления" ng-model="year">
+    
+            Специальность: <select ng-model="speciality">
+                <option>Комп’ютерні науки</option>
+                <option>Маркетинг</option>
+                <option>Менеджмент</option>
+                <option>IT Безпека</option>
+            </select>
+        </div>
+    
+        <div class="ticket">
+            <h2>Ticket</h2>
+            Имя: <b>{{name}}</b><br>
+            Фамилия: <b>{{surname}}</b><br>
+            Отчество: <b>{{fathername}}</b><br>
+            Год поступления: <b>{{year}}</b><br>
+            Specialty: <b>{{speciality}}</b><br>
+            <img src="logo_uni.png" alt="">
+        </div>
+    </div>
+
+
+    <script src="../JS/angular.min.js"></script>
+</body>
+</html>

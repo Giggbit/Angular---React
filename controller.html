@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/intro.css">
+    <title>AngularJS Controller</title>
+</head>
+<body>
+    <button onclick="location.href='index.html'">Back to Menu</button>
+
+    <div class="main">
+        <h1 style="text-align: center; margin-bottom: 50px;">Контроллеры AngularJS</h1>
+        <p>
+            <strong>Лексикографическое округление</strong> (scope) - пространство (кода) локализующего область 
+            видимости своих объектов ограничивается лексонрафическим околом. <br>
+            <strong>Контроллеры</strong> в AngularJS - инструменты для создания отдельных лексографических округлений в одном документе (приложению).
+        </p>
+        <p>
+            Для создания контроллера необходимо:
+        </p>
+        <ul>
+            <li>Дать название (имя) приложения (<code>ng-app="mainApp"</code>)</li>
+            <li>
+                Инициализировать приложение (модуль) - в скриптовой части 
+                ввыполнить инструкцию <code>ng-controller="nameOfComtroller"</code>
+                HTML-блок, для которого создается отдельный лексографичный округ.
+            </li>
+            <li>
+                Инициализировать контроллер по инмени, что ему было задано
+                <code>mainApp.controller(...)</code> (см. controller.js) 
+            </li>
+        </ul>
+
+        <div ng-controller="firstController">
+            Этот блок работает под управлением контроллера
+            <b><code>"firstController"</code></b>.
+            Поэтому у него есть доступ к объекту <b>"data"</b> = <i>{{data}}</i>
+            <div><button ng-click="Add()">Добавить восклицательный знак</button></div>
+        </div>
+        <div>Этот блок за контроллером, в нем попытка доступа к данным дает "data" = {{data}}</div><br>
+
+        <div ng-controller="secondController">
+            Этот блок работает под управлением контроллера
+            <b><code>"secondController"</code></b>.
+            Поэтому у него есть доступ к объекту <b>"data"</b> = <i>{{data}}</i>
+        </div>
+
+        <div style="display: flex; height: 30px; align-items: center; gap: 5px; 
+                background-color: #b130{{num}};" ng-controller="calcController">
+            <button ng-click="dec()">-</button>
+            <p>{{num}}</p>
+            <button ng-click="inc()">+</button>
+            <div ng-if="num < 0 ">Отрицательное значение</div>
+            <div ng-if="num == 0 ">Нулевое значение</div>
+            <div ng-if="num > 0 ">Положительное значение</div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+    <script src="./JS/angular.min.js"></script>
+    <script src="./JS/controller.js"></script>
+    
+</body>
+</html>

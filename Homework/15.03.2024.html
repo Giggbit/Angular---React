@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="trafficLight">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=+, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/intro.css">
+    <title>Homework 15.03.2024</title>
+
+    <style>
+        .traffic_light{
+            display: grid;
+            width: 270px;
+            height: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            background-color: rgb(0, 0, 0);
+            padding: 40px;
+            justify-content: center;
+        }
+
+        .red{
+            height: 120px;
+            width: 120px;
+            border-radius: 100%;
+            background-color: rgb(111, 111, 111);
+        }
+
+        .yellow {
+            height: 120px;
+            width: 120px;
+            border-radius: 100%;
+            background-color: rgb(111, 111, 111);
+        }
+
+        .green{
+            height: 120px;
+            width: 120px;
+            border-radius: 100%;
+            background-color: rgb(111, 111, 111);
+        }
+
+
+        #btn{
+            position: absolute;
+            top: 105%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, 0);
+        }
+    </style>
+</head>
+<body>
+    <button onclick="location.href='../index.html'">Back to Menu</button>
+
+    <div class="traffic_light" ng-controller="controller">
+        {{data}}
+        <div class="red" style="background-color: {{color_red}};"></div>
+        <div class="yellow" style="background-color: {{color_yellow}};"></div>
+        <div class="green" style="background-color: {{color_green}};"></div>
+        <button id="btn" ng-click="ChangeColor()">Change Color</button>
+    </div>
+
+
+    <script src="../JS/angular.min.js"></script>
+    <script src="./JS-HW/15.03.2024.js"></script>
+</body>
+</html>

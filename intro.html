@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/intro.css">
+    <title>AngularJS Intro</title>
+</head>
+<body>
+    <button onclick="location.href='index.html'">Back to Menu</button>
+
+    <div class="main">
+        <h1 style="text-align: center;">Вступ до AngularJS</h1>
+    
+        <h2>Загальний огляд</h2>
+        <p>
+            Angular - сімейство фреймворків для створення UI-застосунків.
+            Розрізняють <a href="https://angularjs.org/">AngularJS</a>
+            (або Angular-1) та <a href="https://angular.io/">Angular</a>
+            (або Angular-CLI)
+        </p>
+    
+        <h2>Встановлення</h2>
+        <p>AngularJS всановлюєтся шляхом підключення одного скрипту, який можна взяти на офіційному сайті.</p>
+        <p>
+            AngularJS виконує пост-обробку розмітки, замінюючи "свої" інструкції на результат. Область яку обробляє AngularJS
+            визначає атрибут <code>ng-app<code>.
+        </p>
+        <p>
+            Для перевірки підключення слід спробувати виконати обчислення виразу. 
+            Вирази берутся у подвійні фігурні дужки {&#x200B;{ 3 * 2 }&#x200B;} = {{ 3 * 2}}
+        </p>
+    
+        <h2>Використання</h2>
+        <p>
+            В основі AngularJS лежить патерн MVVM із зв'язуванням даних та розмітки (відображення). 
+            Під спостереження підпадають усі об'єкти, що задіяні у виразах, а також ті, шо позначені як моделі.
+        </p>
+        <p>
+            <input ng-model="inputData"/>
+            <small> <--- цей інпут позначенний як модель - джерело данних</small><br>
+            <b>{{inputData}}</b> <small>  - цей елемент містить вираз з моделлю</small>
+        </p>
+        <p>Отже моделей може бути довільня кількість. Механізм спостереження може бути використанний для практичних задач підготовки документів.</p>
+        <br>
+
+        <div class="prj1">
+            <div class="prj1-settings">
+                <div>
+                    Назва проекту: <input ng-model="projectName"/>
+                </div>
+                
+                <div>
+                    Тип проекту: <select ng-model="projectType">
+                        <option>Сайт-візитка</option>
+                        <option>Форум</option>
+                        <option>Блог</option>
+                        <option>Landing Page</option>
+                        <option>Wiki-довідник</option>
+                    </select>
+                </div>
+
+                <div style="visibility: {{projectType=='Форум'?'visible':'hidden'}};">
+                    Форум:
+                    <label><input type="radio" value="PHPBB" name="forum" ng-model="forum">PHPBB</label>
+                    <label><input type="radio" value="SMF" name="forum" ng-model="forum">SMF</label>
+                </div>
+                
+                <div>
+                    Хостінг:
+                    <label><input type="radio" value="Amazon" name="hosting" ng-model="hosting">AWS</label>
+                    <label><input type="radio" value="Google" name="hosting" ng-model="hosting">Google Cloud</label>
+                    <label><input type="radio" value="Microsoft" name="hosting" ng-model="hosting">Azure</label>
+                </div>
+                
+                <div>
+                    Бажаний колір: <input type="color" ng-model="siteColor">
+                </div>
+            </div>
+
+            <div class="prj1-context">
+                <h2>{{projectName ? projectName : 'без назви'}}</h2>
+                <p>Замовлення на виконання сайту типу: 
+                    <b>{{projectType ? projectType : 'не вибрано'}}</b>
+                    <b>{{forum}}</b>
+                </p>
+                <p>Розміщення сайту: <b>{{hosting}}</b></p>
+                <div style="width: 50px; height: 20px; background-color: {{siteColor}};"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="./JS/angular.min.js"></script>
+</body>
+</html>
