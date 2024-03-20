@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/intro.css">
+    <title>Angular-Directives</title>
+
+    <style>
+        .content{
+            display: grid;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="location.href='index.html'">Back to Menu</button>
+
+    <div class="main">
+        <h1>Директивы в AngularJS</h1>
+        <p>
+            Директиви є розвитком ідеї контролерів щодо інкапсуляції.
+            Недоліком контролерів є те, що вони не включають до себе 
+            розмітку. Тому копія (дублікат) віджету (комплекса розмітки
+            та коду) вимагає як створення окремого контролера, так і 
+            копіювання HTML розмітки. 
+        </p>
+        <p>
+            Директиви окрім коду включають до себе розмітку (template),
+            разом з якою вони можуть бути дубльовані чи скопійовані. 
+            Розмітка директив знаходиться в кодовій частині, для перенесення
+            її до документу необхідно створювати елементи-контейнери до
+            яких ця розмітка буде перенесена. В залежності від способу
+            створення контейнерів розрізняють директиви, що впроваджуютья
+            через:
+        </p>
+
+        <ul>
+            <li>Атрибут елемента: <code>&lt;div directiva1>&lt;/div></code></li>
+            <li>Стильный класс элемента: <code>&lt;div class="directive2">&lt;/div></code></li>
+            <li>Тег элемента - наиболее распротранен в современной разработке <code></code>&lt;div class="directive3">&lt;/div></li>
+            <li>Коментарий - меньше всего безопасный для размтки (при ошибибках не виден) <code>&lt;!-- directive4 --&#62;</code></li>
+            <li>Комбинированный способ (restrict: "ACE") - через несколько, что описаны выше</li>
+        </ul>
+
+        <div class="content">
+            <div directiva1></div>
+            <div class="directive2"></div>
+            <directive3></directive3>
+            <directive3></directive3>
+            <!-- directive: directive4 -->
+
+            <div directive5></div>
+            <div class="directive5"></div>
+            <directive5></directive5>
+            <!-- directive: directive5 -->
+
+            <directive6 x = "10"; y = "20"></directive6>
+            <div style="display: flex; gap: 30px;">
+                <calc initial = "10"></calc>
+                <calc initial = "20"></calc>
+            </div>
+        </div>
+        
+
+
+    </div>
+
+    <script src="JS/angular.min.js"></script>
+    <script src="JS/directives.js"></script>
+</body>
+</html>

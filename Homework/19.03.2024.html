@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/intro.css">
+    <title>Homework 19.03.2024</title>
+
+    <style>
+        .tl1{
+            display: flex;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .traffic_light{
+            display: grid;
+            width: 270px;
+            height: 500px;
+            border-radius: 5px;
+            background-color: rgb(0, 0, 0);
+            padding: 40px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle{
+            height: 120px;
+            width: 120px;
+            border-radius: 100%;
+            color: wheat;
+        }
+
+        #btn{
+            margin-top: 30%;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="location.href='../index.html'">Back to Menu</button>
+
+    <div class="tl1">
+        <directive1></directive1>
+        <directive1></directive1>
+    </div>
+
+
+
+    <script src="../JS/angular.min.js"></script>
+    <script src="JS-HW/19.03.2024.js"></script>
+</body>
+</html>
