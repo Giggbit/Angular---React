@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS-Components</title>
+    <link rel="stylesheet" href="style/intro.css">
+
+
+    <style>
+        comp1, comp2, comp3 {
+            display: block;
+            margin-top: 15px;
+        }
+
+        rates table, rates td{
+            border: 1px solid rgb(143, 143, 143);
+            border-collapse: collapse;
+        }
+
+        rates td{
+            padding: 3px 5px;
+        }
+
+        rates tr:nth-child(odd){
+            background-color: rgb(57, 67, 84);
+        }
+
+        .rate-usd{
+            background-color: rgb(50, 83, 50) !important;
+        }
+
+
+    </style>
+</head>
+<body>
+    <button onclick="location.href='index.html'">Back to Menu</button>
+
+    <div class="main">
+        <h1>Компоненты</h1>
+        <p>
+            Компоненты - это дальнейшее развитие концепции локализации окружения. 
+            Можно сказать что это обертка над директивой с наибольшим используемыми настройками по умолчанию.
+            Это особый вид директивы , использующий более простую конфигурацию, подходящую для структуры приложения, основанной на компонентах.
+        </p>
+        
+        <h2>Создание и настройка компонента</h2>
+        <p>
+            Компоненты можно зарегистрировать с помощью .component() метода модуля AngularJS (возвращаемого функцией angular.module()). 
+            Метод принимает два аргумента:
+            <ul>
+                <li>Имя компонента (в виде строки).</li>
+                <li>Объект конфигурации компонента. (Обратите внимание, что, в отличие от метода .directive(), этот метод не принимает фабричные функции).</li>
+            </ul>
+        </p><br>
+
+        <comp1></comp1>
+        <comp2></comp2>
+        <comp2></comp2>
+        <comp3 x="10"></comp3>
+        <comp3 x="20"></comp3>
+        <rates></rates>
+
+
+
+    </div>
+
+    <script src="JS/angular.min.js"></script>
+    <script src="JS/components.js"></script>
+</body>
+</html>

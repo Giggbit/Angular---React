@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="21.03">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/intro.css">
+    <title>21.03.2024</title>
+
+    <style>
+        comp1, comp2, comp3 {
+            display: block;
+            margin-top: 15px;
+        }
+
+        rate table, rate td{
+            border: 1px solid rgb(143, 143, 143);
+            border-collapse: collapse;
+        }
+
+        rate td{
+            padding: 3px 5px;
+        }
+
+        rate tr:nth-child(odd){
+            background-color: rgb(57, 67, 84);
+        }
+
+        .USD{
+            background-color: rgb(50, 83, 50) !important;
+        }
+
+    </style>
+</head>
+<body>
+    <button onclick="location.href='../index.html'">Back to Menu</button>
+
+    <div class="main">
+        <rate accent="USD"></rate>
+
+    </div>
+
+
+    <script src="../JS/angular.min.js"></script>
+    <script src="JS-HW/21.03.2024.js"></script>
+</body>
+</html>

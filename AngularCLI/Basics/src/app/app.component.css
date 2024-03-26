@@ -1,0 +1,23 @@
+.calc {
+    display: inline-flex;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 15px;
+    align-items: center;
+}
+
+.calc button {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 2px 15px;
+    background: rgb(195, 186, 226);
+    color: white;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+.calc b {
+    font-size: 26px;
+}

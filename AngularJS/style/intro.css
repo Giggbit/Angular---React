@@ -18,6 +18,10 @@ li, div{
     font-size: 14px;
 }
 
+b{
+    color: rgb(149, 168, 209);
+}
+
 p{
     font-size: 16px;
 }

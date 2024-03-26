@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/intro.css">
+
+    <style>
+        .moon-container{
+            display: block;
+            border: 1px solid rgb(198, 198, 198);
+            width: 200px;
+            height: 250px;
+            background-color: rgb(103, 120, 152);
+            border-radius: 15px;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .day{
+            font-weight: 800;
+        }
+
+        .moon-svg{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .phase{
+            font-weight: 600;
+        }
+
+        input{
+            margin-top: 20px;
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="location.href='index.html'">Back to Menu</button>
+    
+    <div class="main">
+        <h1 style="text-align: center;">Практика. Работа с API (Moon)</h1>
+
+        <moon></moon>        
+
+    </div>
+
+
+
+    <script src="JS/angular.min.js"></script>
+    <script src="JS/moon.js"></script>
+</body>
+</html>
