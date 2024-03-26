@@ -3,10 +3,10 @@ const url = "https://www.icalendar37.net/lunar/api/?year=2024&month=3&shadeColor
 angular.module("mainApp", [])
 .component("moon", {
     template: `<div class="moon-container">
-        <div class="day">{{moonData.nameDay[day - 1]}}</div>
-        <div class="month">{{selectedDate + " " + moonData.monthName + " " + moonData.year}}</div>
-        <div class="moon-svg" ng-bind-html="toTrusted(moonData.phase[selectedDate].svg)"></div>
-        <div class="phase">{{moonData.phase[selectedDate].npWidget}}</div>
+        <div class="day">{{moonData.nameDay[currentDay]}}</div>
+        <div class="month">{{currentDate + " " + moonData.nameMonth[currentMonth] + " " + currentYear}}</div>
+        <div class="moon-svg" ng-bind-html="toTrusted(moonData.phase[currentDate].svg)"></div>
+        <div class="phase">{{moonData.phase[currentDate].npWidget}}</div>
     </div>
     <input type="date" ng-model="selectedDate" ng-change="selectedDateChange()">`,
     controller: moonController
@@ -20,16 +20,24 @@ function  moonController($scope, $http, $sce) {
     $scope.moonData = {
         phase: {}
     };
-    $scope.selectedDate = new Date().getDate();
-    $scope.day = new Date().getDay();
+    $scope.selectedDate = new Date();
+    $scope.currentDate = $scope.selectedDate.getDate();
+    $scope.currentDay = ($scope.selectedDate.getDay() + 6) % 7;
+    $scope.currentYear = $scope.selectedDate.getFullYear();
+    $scope.currentMonth = $scope.selectedDate.getMonth();
     $scope.toTrusted = $sce.trustAsHtml;
 
     $scope.selectedDateChange = () => {
-        // moonData.phase = $scope.day;
-        $scope.date = $scope.selectedDate.getDate();
-        console.log($scope.date);
-        console.log($scope.selectedDate);
-        $scope.moonData.phase[$scope.selectedDate].svg;
+        if($scope.selectedDate.getMonth() + 1 == 3 && $scope.selectedDate.getFullYear() == 2024) {
+            
+        }
+
+        $scope.currentDate = $scope.selectedDate.getDate();
+        $scope.currentDay = ($scope.selectedDate.getDay() + 6) % 7;
+        $scope.currentYear = $scope.selectedDate.getFullYear();
+        $scope.currentMonth = $scope.selectedDate.getMonth();  
+
+        console.log($scope.selectedDate.getMonth(), $scope.currentDay);
     }
 }
 
