@@ -6,9 +6,13 @@
   <button (click)="addClick()">+</button>
 </div>
 
+@if(num < 0 || num > 20 ){
+  <p>Maximum number reached</p>
+}
 
 
-
+<traffic-light [baseState]="trafficData"/> <br>
+<button (click)="traffic()">Вплинути на світлофор</button>
 
 
 <router-outlet />

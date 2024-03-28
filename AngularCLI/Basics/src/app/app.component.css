@@ -1,10 +1,11 @@
 .calc {
     display: inline-flex;
-    border: 2px solid gray;
+    border: 2px solid black;
     border-radius: 10px;
     padding: 10px;
     gap: 15px;
     align-items: center;
+    background-color: rgb(215, 208, 246);
 }
 
 .calc button {
@@ -13,7 +14,6 @@
     margin-bottom: 15px;
     padding: 2px 15px;
     background: rgb(195, 186, 226);
-    color: white;
     font-size: 25px;
     border-radius: 10px;
 }
