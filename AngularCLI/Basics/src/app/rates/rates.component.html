@@ -1,0 +1,21 @@
+
+<table>
+    <tbody>
+        @for(rate of rates; track rate.cc) {
+            <tr>
+                <td>{{rate.cc}}</td>
+                <td>{{rate.txt}}</td>
+                <td>{{rate.rate}}</td>
+                <td>{{rate.r030}}</td>
+                
+                @if(rate.cc === "EUR") {
+                    <td>€</td>
+                }
+
+                @if(rate.cc === "USD") {
+                    <td>$</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
