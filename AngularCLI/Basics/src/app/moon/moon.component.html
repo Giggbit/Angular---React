@@ -1,0 +1,17 @@
+<!-- <div class="moon">
+    <div [innerHTML] ="moonPhase.safeSvg"></div>
+    <div>{{moonPhase.npWidget}}</div>
+</div> -->
+
+@if(phases.length > 0){
+    <div class="moon-container">
+        @for(day of days; track day){
+            <div class="moon">
+                <div [innerHTML]="toTrusted(phases[day].svg)"></div>
+                <div class="wax">{{phases[day].npWidget}}</div>
+            </div>
+        }    
+    </div>    
+}
+
+<br><input type="date" (change)="dateChanged($event)"/>
