@@ -1,0 +1,61 @@
+<h1>Формы Angular. Реактивные формы</h1>
+<p>
+    Формы (у розумінні html-форми) - это форма обратной связи, средства для передачи данных от пользователя к серверу.
+    Программная задача: повлиять на автоматический процесс отправки формы или полностью ее заменить.
+</p>
+<p>
+    Класический подход - создание html-елментов (input-ов), перехват действия "submit" или замена кнопки на другой тип.
+
+</p>
+<p>
+    Реактивные формы - соеденение элементов формы с кодом с помощью контролеров, влияние на которые происходит на контролерах, и наоборот.
+    При анализе формы проверяются только данные в контролерах, без необходимости поиска элементов html.
+    Поскольку в большинстве случаев в форме есть несколько элементов, контролеры позволяют группировку для упрощения досупа.
+</p>
+
+<br><h2>Аутентификация</h2><br>
+<form [formGroup]="authForm" (ngSubmit)="onAuthSubmit()">
+    <div class="col-4">
+        <div class="col">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="user-login"><i class="bi bi-person-circle"></i></span>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Login" 
+                    aria-describedby="user-login" formControlName="userLogin">
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="user-password"><i class="bi bi-lock-fill"></i></span>
+                <input type="password" class="form-control" placeholder="Password" aria-label="Password" 
+                    aria-describedby="user-password" formControlName="userPassword">
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="user-email"><i class="bi bi-envelope-at-fill"></i></span>
+                <input type="email" class="form-control" placeholder="Email" aria-label="Email" 
+                    aria-describedby="user-email" formControlName="userEmail">
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="input-group">
+                <span class="input-group-text" id="user-gender"><i class="bi bi-gender-ambiguous"></i></span>
+                <select class="form-select" name="gender" id="genders" formControlName="userGender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="plane">Plane</option>
+                    <option value="chear">Chear</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col d-grid col-8 mx-auto mt-3"> 
+            <button type="submit" class="btn btn-outline-success">Login</button>
+        </div>
+    </div>
+</form>
+
+
