@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <link rel="stylesheet" href="style/style.css">
+
+    <style>
+        table, th, td {
+            border:1px solid rgb(145, 141, 141);
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="main">
+    <h1>Вступ до React JS</h1>
+    <p>
+        Аналогічно до Angular, React існує у двох варіаціях:
+        a) <a href="https://legacy.reactjs.org/">У вигляді біліотек для HTML</a>,
+        b) <a href="https://react.dev/">У вигляді CLI-проектів</a><br>
+        Починаємо розгляд з біліотек
+    </p>
+    <h2>Встановлення</h2>
+    <p>Встановлення бібліотечної версії - це підключення декількох скриптів:</p>
+    <ol>
+        <li><code>https://unpkg.com/react@18/umd/react.development.js</code> - ядро React, опис компонент</li>
+        <li><code>https://unpkg.com/react-dom@18/umd/react-dom.development.js</code> - засоби для впровадження React-компонентів у DOM (HTML)</li>
+        <li><code>https://unpkg.com/babel-standalone@6/babel.min.js</code> - траеслятор мови JSX (її перекладач на JS)</li>
+    </ol>
+    <p>Порядок підключення скриптів має значення і повинен відповідати переліченому</p>
+    <h2>Hello world!</h2>
+    <p>Порядок роботи з React виглядає наступним чином:</p>
+    <ul>
+        <li>У скриптовій частині описуємо клас/функцію, яка декларує компонент</li>
+        <li>У HTML створюємо елемент-контейнер для компонента</li>
+        <li>Засобами React-DOM впроваджуємо компонент у контейнер</li>
+    </ul>
+    <!-- Контейнер для компонента -->
+    <div id="component1-container"></div>
+    <div id="comp2"></div>
+    <div id="comp3"></div>
+
+</div>
+
+
+    <!-- Бібліотеки React -->
+    <script src="lib/react.development.js"></script>
+    <script src="lib/react-dom.development.js"></script>
+    <script src="lib/babel.min.js"></script>
+    <!-- App-скрипти мають слідувати після бібліотек -->
+    <script>
+        // Компонент - клас-нащадок React.Component 
+        class Component1 extends React.Component {
+            // render() - аналог template (Angular) - структура компонента
+            render() {
+                // повертається лише один елемент, що може мати дочірні елементи
+                return React.createElement(
+                    'b',
+                    { style: { color: "#95A8D1" } },
+                    "Hello World!"
+                );
+            }
+        }
+        const domElement = document.getElementById("component1-container");
+        // ReactDOM.render(React.createElement(Component1, {}, null), domElement);
+        ReactDOM.createRoot(domElement).render(React.createElement(Component1, {}, null));
+    </script>
+
+    <!-- Демонстрація складних елементів с дочірніми -->
+    <script>
+        class Component2 extends React.Component {
+            render() {
+                return React.createElement(
+                    'ul', 
+                    {},
+                    React.createElement('li', {}, "Item 1"),
+                    React.createElement('li', {}, "Item 2"),
+                    React.createElement('li', {}, "Item 3"),
+                    React.createElement('li', {}, 
+                        React.createElement('ul', {}, 
+                        [
+                            React.createElement('li', {key: 1}, "Item 4.1"),
+                            React.createElement('li', {key: 2}, "Item 4.2"),
+                            React.createElement('li', {key: 3}, "Item 4.3")
+                        ])
+                    )
+                );
+            }
+        }
+        ReactDOM.createRoot(document.getElementById("comp2")).render(React.createElement(Component2, {}, null));
+    </script>
+
+    <!-- Работа з масивами -->
+    <script>
+        const data = [
+            {cc: "1", txt: "Data 1"},
+            {cc: "3", txt: "Data 2"},
+            {cc: "4", txt: "Data 3"},
+            {cc: "7", txt: "Data 4"},
+            {cc: "8", txt: "Data 5"}
+        ];
+        // Через поширеність методу React.createElement для нього робиться alias
+        const e = React.createElement;
+        class Component3 extends React.Component {
+            render() {
+                return e('table', null, 
+                    e('thead', null,
+                        e('tr',null,
+                            e('th', {style: { color: "#95A8D1" }}, 'cc'),
+                            e('th', {style: { color: "#95A8D1" }}, 'txt')
+                        )
+                    ),
+                    e('tbody', null, 
+                        data.map(d =>
+                            e('tr',{ key: d.cc },
+                                e('td', null, d.cc),
+                                e('td', null, d.txt)
+                            )
+                        )
+                    )
+                );
+            }
+        }
+        ReactDOM.createRoot(document.getElementById("comp3")).render(React.createElement(Component3, {}, null));
+    </script>
+
+</body>
+</html>
