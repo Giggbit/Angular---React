@@ -3,6 +3,8 @@
     <div class="light" [class.red]="state == 0 || state == 1"></div>
     <div class="light" [class.yellow]="state == 1 || state == 3"></div>
     <div class="light" [class.green]="state == 2"></div>
+    <div class="arrow red-arrow" [class.active]="state == 0">↑</div>
+    <div class="arrow green-arrow" [class.active]="state == 2">↑</div>
     <button (click)="nextState()">Next</button>
 
     <div style="flex-direction: row; display: flex;">

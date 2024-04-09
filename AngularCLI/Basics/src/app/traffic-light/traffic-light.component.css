@@ -42,3 +42,20 @@ button:hover {
     background-color: green !important;
 }
 
+.arrow {
+    color: white;
+    margin-top: 10px;
+    font-size: 30px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .arrow.active.red-arrow {
+    opacity: 1;
+    color: red !important;
+  }
+  
+  .arrow.active.green-arrow {
+    opacity: 1;
+    color: green !important;
+  }
