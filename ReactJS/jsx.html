@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX</title>
+    <link rel="stylesheet" href="style/style.css">
+
+    <style>
+        .calculator {
+            display: inline-flex;
+            background-color: rgb(75, 75, 75);
+            padding: 15px;
+            margin-top: 20px;
+            align-items: center;
+            gap: 5px;
+            border-radius: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="main mt-3">
+        <h1>JSX у React</h1>
+        <comp1></comp1>
+        <br>
+        <comp2></comp2>
+        <br>
+        <comp3></comp3>
+        <div id="message"></div>
+    </div>
+
+
+    <!-- Бібліотеки React -->
+    <script src="lib/react.development.js"></script>
+    <script src="lib/react-dom.development.js"></script>
+    <script src="lib/babel.min.js"></script>
+    <!-- JSX-скрипти повинні мати тип "text/babel" -->
+    <script type="text/babel">
+        class Component1 extends React.Component {
+            render() {
+                return <>Hello JSX</>;
+            }
+        }
+        ReactDOM.createRoot(document.querySelector('comp1')).render(<Component1/>)
+    </script>
+    <!-- comp2 -->
+    <script type="text/babel">
+        class Component2 extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    exc: "!"
+                };
+                this.addExclamation = this.addExclamation.bind(this);
+            }
+            addExclamation() {
+                this.setState({exc: this.state.exc += "!"});
+            }
+
+            render() {
+                return <>Hello JSX {this.state.exc}<br/><button onClick={this.addExclamation}>Add</button></>;
+            }
+        }
+        ReactDOM.createRoot(document.querySelector('comp2')).render(<Component2/>)
+    </script>
+    <!-- comp3 -->
+    <script type="text/babel">
+        class Component3 extends React.Component {
+            constructor(props){
+                super(props);
+                console.log(props);
+                this.state = {
+                    cnt: Number(props.data),
+                    fontSize: 2 * Number(props.data),
+                    message: ""
+                };
+                this.decClick = this.decClick.bind(this);
+                this.incClick = this.incClick.bind(this);
+            }
+
+            incClick() {
+                this.state.cnt++;
+                this.state.fontSize = 2 * this.state.cnt;
+                this.state.message = this.state.cnt > 15 ? "It's more!" : "";
+                this.setState({});
+            }
+
+            decClick() {
+                this.setState(state => {
+                    state.cnt--;
+                    state.fontSize = 2 * state.cnt;
+                    state.message = state.cnt < 5 ? "It's less!" : "";
+                    return state;
+                });
+            }
+            
+            render() {
+                return <>
+                    <div>
+                        <div className="calculator">
+                            <button onClick={this.decClick}>-</button>
+                            <b style={{fontSize: this.state.fontSize + 'px'}}>{this.state.cnt}</b>
+                            <button onClick={this.incClick}>+</button>
+                        </div>
+                        <div>{this.state.message}</div>
+                    </div>
+                </>
+            }
+        }
+        ReactDOM.createRoot(document.querySelector('comp3')).render(<Component3 data="10"/>)
+    </script>
+
+
+
+
+
+
+</body>
+</html>
