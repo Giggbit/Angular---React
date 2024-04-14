@@ -1,31 +1,40 @@
 *{
-    box-sizing: border-box;
-    color: rgb(209, 209, 209);
+    box-sizing: border-box !important;
+    color: rgb(209, 209, 209) !important;
 }
 
 body {
     background-color: rgb(47, 47, 47)!important;
 }
 
-p, h2, h1{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+p, h2, h1, h3, b{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
 }
 
 li, div{
-    font-family: 'Franklin Gothic Small', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Small', 'Arial Narrow', Arial, sans-serif !important;
     font-size: 14px;
 }
 
 b{
-    color: rgb(149, 168, 209);
+    color: rgb(149, 168, 209) !important;
 }
 
 p{
-    font-size: 16px;
+    font-size: 16px !important;
 }
 
 h2{
-    margin-top: 3%;
+    margin-top: 3% !important;
+}
+
+th {
+    font-size: 18px;
+    color: rgb(149, 168, 209) !important;
+}
+
+table {
+    gap: 20px;
 }
 
 input, select, button{
@@ -39,12 +48,13 @@ select, button:hover{
 }
 
 .main {
-    width: 85%;
-    height: 90%;
-    margin-left: 7.5%;
-    background-color: #292929;
-    padding: 20px;
-    border-radius: 8px;
+    width: 85% !important;
+    height: 90% !important;
+    margin-left: 7.5% !important;
+    background-color: #292929 !important;
+    padding: 20px !important;
+    border-radius: 8px !important;
+    margin-top: 10px;
 }
 
 
