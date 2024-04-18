@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        #load {
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main">
+        <comp1></comp1>
+        <moon></moon>
+    </div>
+
+
+    <script src="lib/react.development.js"></script>
+    <script src="lib/react-dom.development.js"></script>
+    <script src="lib/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script type="text/babel">
+        function Component1(props) {
+            let [content, setContent] = React.useState("Hello");
+            let [tag, setTag] = React.useState("b");
+            let [html, setHtml] = React.useState({
+                __html: "<b>Hello</b>"
+            });
+
+            React.useEffect(() => {
+                setHtml({
+                    __html: `<${tag}>${content}</${tag}>`
+                });
+            }, [tag, content]);
+
+            const divClick = () => {
+                setContent(content + "!");
+            };
+            const tagChanged = e => setTag(e.target.value);
+
+            return <>
+                <h1>Робота с динамичным HTML</h1>
+                <div onClick={divClick} dangerouslySetInnerHTML={html}></div>
+                <select onChange={tagChanged}>
+                    <option value="b">&lt;b&gt;</option>
+                    <option value="i">&lt;i&gt;</option>
+                    <option value="s">&lt;s&gt;</option>
+                    <option value="u">&lt;u&gt;</option>
+                </select>
+            </>
+        }
+
+        ReactDOM.createRoot(document.querySelector('comp1')).render(<Component1 />)
+    </script>
+
+    <script type="text/babel">
+        function MoonWidget(props) {
+            const url = "https://www.icalendar37.net/lunar/api/?year=2024&month=4&shadeColor=gray&size=150&texturize=true&day=16";
+            let [svg, setSvg] = React.useState({__html: ""});
+            let [date, setDate] = React.useState(new Date());
+            const dateRef = React.useRef(new Date('1900-01-01'));
+            let [phases, setPhases] = React.useState({});
+
+            const toSql = (dt) => {
+                let year = dt.getFullYear();
+                let month = dt.getMonth() + 1;
+                let day = dt.getDate();
+                if(month < 10) month = `0${month}`;
+                if(day < 10) day = `0${day}`;
+                return `${year}-${month}-${day}`;
+            };
+
+            React.useEffect(() => {
+                if(date.getYear() == dateRef.current.getYear() && date.getMonth() == dateRef.current.getMonth()) {
+                    setSvg({ __html: phases[date.getDate()].svg });
+                }
+                else {
+                    setSvg({ __html: "<img id='load' src='load-icon.gif'/>" });
+                    setTimeout( () => fetch(url).then(r => r.json()).then(j => { 
+                        setPhases(j.phase);
+                        setSvg({ __html: j.phase[date.getDate()].svg }) 
+                    }), 900);
+                }
+                //console.log(phases);                
+                dateRef.current = date;
+            }, [date]);
+
+            const dateChanged = e => setDate(new Date(e.target.value));
+
+            return <>
+                <input type="date" defaultValue={toSql(date)} onChange={dateChanged} /><br/><br/>
+                <div dangerouslySetInnerHTML={svg}></div>
+                <div>{toSql(date)}</div>
+                { phases[date.getDate()] && <div>{phases[date.getDate()].npWidget}</div> }
+            </>;
+        }
+
+        ReactDOM.createRoot(document.querySelector('moon')).render(<MoonWidget />)
+    </script>
+</body>
+</html>
