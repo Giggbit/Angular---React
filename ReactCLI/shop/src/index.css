@@ -16,3 +16,9 @@ b {
 footer {
   padding: 15px 50px;
 }
+
+.ctg-img {
+  max-width: 1.5em;
+  max-height: 1.5em;
+  margin-right: 1em;
+}

@@ -1,5 +1,4 @@
 import { Outlet, Link } from "react-router-dom";
-import CategoriesList from "./CategoriesList";
 
 const Layout = () => {
   return (
@@ -13,7 +12,7 @@ const Layout = () => {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
                         <Link className="nav-link" to="/">Home</Link>
-                        <Link className="nav-link" to="/category/cat/">Category</Link>
+                        <Link className="nav-link" to="/category">Category</Link>
                         <Link className="nav-link" to="/notfound">NotFound</Link>
                         <Link className="nav-link" to="/cart">Cart</Link>
                         <Link className="nav-link" to="/privacy">Privacy Policy</Link>
@@ -23,10 +22,7 @@ const Layout = () => {
         </nav>  
 
         <div className="container">
-            <div className="row">
-                <div className="col col-sm-2"><CategoriesList /></div>
-                <div className="col col-sm-9"><Outlet /></div>
-            </div>            
+            <div><Outlet /></div>           
         </div>
 
         <div className="spacer"></div>
