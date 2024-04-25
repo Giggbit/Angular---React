@@ -62,44 +62,104 @@
 
     <script type="text/babel">
         function MoonWidget(props) {
-            const url = "https://www.icalendar37.net/lunar/api/?year=2024&month=4&shadeColor=gray&size=150&texturize=true&day=16";
+            const url = "https://www.icalendar37.net/lunar/api/?year=[year]&month=[month]&shadeColor=gray&size=150&texturize=true";
             let [svg, setSvg] = React.useState({__html: ""});
             let [date, setDate] = React.useState(new Date());
+            let [days, setDays] = React.useState([]);
             const dateRef = React.useRef(new Date('1900-01-01'));
             let [phases, setPhases] = React.useState({});
-
-            const toSql = (dt) => {
-                let year = dt.getFullYear();
-                let month = dt.getMonth() + 1;
-                let day = dt.getDate();
-                if(month < 10) month = `0${month}`;
-                if(day < 10) day = `0${day}`;
-                return `${year}-${month}-${day}`;
-            };
+            const [moonPhase, setMoonPhase] = React.useState({});
 
             React.useEffect(() => {
+                let day = date.getDay() - 1;
+                setDays([day - 1, day, day + 1]);
+
+                let formattedUrl = url.replace("[year]", date.getFullYear().toString()).replace("[month]", (date.getMonth() + 1).toString());
+
                 if(date.getYear() == dateRef.current.getYear() && date.getMonth() == dateRef.current.getMonth()) {
                     setSvg({ __html: phases[date.getDate()].svg });
                 }
                 else {
                     setSvg({ __html: "<img id='load' src='load-icon.gif'/>" });
-                    setTimeout( () => fetch(url).then(r => r.json()).then(j => { 
-                        setPhases(j.phase);
-                        setSvg({ __html: j.phase[date.getDate()].svg }) 
+                    setTimeout( () => fetch(formattedUrl).then(response => response.json()).then(data => {
+                        const phase = data.phase;
+                        setPhases(Object.keys(phase).map(k => phase[k]));
+                        setSvg({ __html: data.phase[date.getDate()].svg });
+                        setMoonPhase(phases[day]);
                     }), 900);
                 }
-                //console.log(phases);                
                 dateRef.current = date;
+
             }, [date]);
 
-            const dateChanged = e => setDate(new Date(e.target.value));
+            const dateChanged = (event) => {
+                const selectedDate = new Date(event.target.value);
+                setDate(selectedDate);
+            };
 
-            return <>
-                <input type="date" defaultValue={toSql(date)} onChange={dateChanged} /><br/><br/>
-                <div dangerouslySetInnerHTML={svg}></div>
-                <div>{toSql(date)}</div>
-                { phases[date.getDate()] && <div>{phases[date.getDate()].npWidget}</div> }
-            </>;
+            const createMarkup = (htmlString) => {
+                return { __html: htmlString };
+            };
+
+            return (
+                <div>
+                    <div className="moon-container">
+                        {phases.length > 0 && days.map((day, index) => (
+                            <div key={index} className="moon">
+                                <div dangerouslySetInnerHTML={svg}></div>
+                                <div className="wax">{phases[day].npWidget}</div>
+                            </div>
+                        ))}
+                    </div>
+                    <br />
+                    <input type="date" onChange={dateChanged}  className="calendar"/>
+                </div>
+            );
+
+            // const toSql = (dt) => {
+            //     let year = dt.getFullYear();
+            //     let month = dt.getMonth() + 1;
+            //     let day = dt.getDate();
+            //     if(month < 10) month = `0${month}`;
+            //     if(day < 10) day = `0${day}`;
+            //     return `${year}-${month}-${day}`;
+            // };
+
+            // React.useEffect(() => {
+            //     let day = new Date().getDate();
+            //     setDays([day - 1, day, day + 1]);
+
+            //     if(date.getYear() == dateRef.current.getYear() && date.getMonth() == dateRef.current.getMonth()) {
+            //         setSvg({ __html: phases[date.getDate()].svg });
+            //     }
+            //     else {
+            //         setSvg({ __html: "<img id='load' src='load-icon.gif'/>" });
+            //         setTimeout( () => fetch(url).then(r => r.json()).then(j => { 
+            //             setPhases(j.phase);
+            //             setSvg({ __html: j.phase[date.getDate()].svg }) 
+            //         }), 900);
+            //     }
+            //     dateRef.current = date;
+            // }, [date]);
+
+            // const dateChanged = e => setDate(new Date(e.target.value));
+
+            // const cycle = days.map(function(d){
+            //     return <>
+            //         <div className="moon">
+            //             <input type="date" defaultValue={toSql(date)} onChange={dateChanged} /><br/><br/>
+            //             <div dangerouslySetInnerHTML={svg}></div>
+            //             <div className="wax">{toSql(date)}</div>
+            //             { phases[d] && <b>{phases[d].npWidget}</b> }    
+            //         </div>
+            //     </>
+            // });
+
+            // return <>
+            //     <div className="moon-container">
+            //         {cycle}
+            //     </div>
+            // </>;
         }
 
         ReactDOM.createRoot(document.querySelector('moon')).render(<MoonWidget />)

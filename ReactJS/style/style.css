@@ -18,6 +18,7 @@ li, div{
 
 b{
     color: rgb(149, 168, 209) !important;
+    font-size: 16px;
 }
 
 p{
@@ -55,6 +56,27 @@ select, button:hover{
     padding: 20px !important;
     border-radius: 8px !important;
     margin-top: 10px;
+}
+
+.moon-container {
+    display: flex;
+    gap: 30px;
+}
+
+.moon {
+    margin-top: 20px;
+    display: inline-block;
+    text-align: center;
+    background-color: rgb(78, 78, 79);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.wax {
+    margin-top: 20px;
+}
+.wax p {
+    margin: 0;
 }
 
 
