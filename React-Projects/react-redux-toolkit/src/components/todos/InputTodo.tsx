@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { addTodo } from "../../slices/todos/todos-slice";
+import { addTodo, getTodos, addTodos } from "../../slices/todos/todos-slice";
 import { TodoType } from "../../types/todo-types";
 import { v4 } from "uuid";
 import TodoList from "./TodoList";
@@ -14,7 +14,7 @@ const InputTodo = () => {
         isCompleted: true
     });
 
-    const addTodoHandler = (e: any) => {
+    const addTodoHandler = () => {
         try {
             setTodo((prevState) => ({
                 ...prevState,
@@ -22,7 +22,9 @@ const InputTodo = () => {
                 isCompleted: true,
                 title: todo.title
             }));
+
             dispatch(addTodo(todo));
+            dispatch(addTodos(todo));
             setTodo((prevState) => ({
                 ...prevState,
                 title: ""
@@ -48,6 +50,12 @@ const InputTodo = () => {
             <a className="waves-effect waves-light btn-large" onClick={todo.title.length > 0 ? addTodoHandler : () => {}}>
                 <i className="material-icons left">chevron_right</i>Add
             </a>
+            <a className="waves-effect waves-light btn-large " onClick={() => dispatch<any>(getTodos())}>
+                <i className="material-icons left">chevron_right</i>Get Todos from Server
+            </a>
+            {/* <a className="waves-effect waves-light btn-large " onClick={() => dispatch<any>(addTodos(todo))}>
+                <i className="material-icons left">chevron_right</i>Add to Server
+            </a> */}
             <TodoList />
         </div>
     );
