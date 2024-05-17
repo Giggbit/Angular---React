@@ -25,9 +25,8 @@ module.exports = (env) => {
             new htmlWebpackPlugin({
                 template: path.resolve(__dirname, "public", "index.html")
             }),
-            new webpack.ProgressPlugin(),
+            
         ],
-
         module: {
             rules: [
               {
@@ -36,9 +35,13 @@ module.exports = (env) => {
                 exclude: /node_modules/,
               },
             ],
-          },
-          resolve: {
+        },
+        resolve: {
             extensions: ['.tsx', '.ts', '.js'],
-          },
+        },
+        devServer: {
+            port: 5000,
+            open: true,
+        }
     }
 }
